@@ -26,7 +26,7 @@ const PostItem: React.FC<Props> = ({ post }) => {
             <Typography variant="subtitle1" component="div" sx={{ color: 'text.secondary' }}>
               {dayjs(post.datetime).format('DD.MM.YYYY HH:mm')} by {post.user.username}
             </Typography>
-            <Typography component="div" variant="h4" sx={{ fontWeight: 'bold' }} mt={3}>
+            <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} mt={5}>
               {post.title}
             </Typography>
           </CardContent>
