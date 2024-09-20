@@ -24,7 +24,7 @@ export interface Comment {
 export interface PostMutation {
   title: string;
   description: string | null;
-  image: string | null;
+  image: File | null;
 }
 
 export interface CommentMutation {

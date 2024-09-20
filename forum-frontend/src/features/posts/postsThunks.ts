@@ -15,14 +15,24 @@ export const fetchOnePost = createAsyncThunk<Post, string>('posts/fetchOne', asy
 
 export const createPost = createAsyncThunk<void, PostMutation, { state: RootState }>(
   'posts/create',
-  async (PostMutation, { getState }) => {
+  async (postMutation, { getState }) => {
     const token = getState().users.user?.token;
 
     if (!token) {
       throw new Error('No token found');
     }
 
-    await axiosApi.post('/comments', PostMutation, {
+    const formData = new FormData();
+
+    const keys = Object.keys(postMutation) as (keyof PostMutation)[];
+    keys.forEach((key) => {
+      const value = postMutation[key];
+      if (value !== null) {
+        formData.append(key, value);
+      }
+    });
+
+    await axiosApi.post('/posts', formData, {
       headers: { Authorization: `Bearer ${token}` },
     });
   },

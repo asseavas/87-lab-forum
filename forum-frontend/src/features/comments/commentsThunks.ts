@@ -3,7 +3,7 @@ import axiosApi from '../../axiosApi';
 import { Comment, CommentMutation } from '../../types';
 import { RootState } from '../../app/store';
 
-export const fetchComments = createAsyncThunk<Comment[], number>('comments/fetchAll', async (id) => {
+export const fetchComments = createAsyncThunk<Comment[], string>('comments/fetchAll', async (id) => {
   const { data: comments } = await axiosApi.get<Comment[]>(`/comments?post=${id}`);
   return comments;
 });
